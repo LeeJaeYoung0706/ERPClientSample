@@ -1,5 +1,3 @@
-import java.util.List;
-
 /**
  * GET 요청 Request DTO 함수 예제 1
  */

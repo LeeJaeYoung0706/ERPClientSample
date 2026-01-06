@@ -1,10 +1,3 @@
-package dtos;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 /**
  * GET 요청 Request DTO 함수 예제 2
  */

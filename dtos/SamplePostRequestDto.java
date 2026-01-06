@@ -1,3 +1,6 @@
+/**
+ * POST 요청용 validation 필수 체크 포함
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Getter

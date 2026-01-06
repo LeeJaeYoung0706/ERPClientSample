@@ -6,3 +6,5 @@ sample:
     token: ENC(SAMPLE_TOKEN)
     calle-name: ENC(SAMPLE_CALLER)
     group-seq: ENC(SAMPLE_GROUP)
+
+해당 값은 sample 예시

@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 /**
  *  변수 타입 체크용.
  */
