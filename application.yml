@@ -1,0 +1,8 @@
+sample:
+  client:
+    sample-key: ENC(YOUR_COMPANY_CODE)
+    base-url: ENC(SAMPLE_URL)
+    hash-key: ENC(SAMPLE_HASH_KEY)
+    token: ENC(SAMPLE_TOKEN)
+    calle-name: ENC(SAMPLE_CALLER)
+    group-seq: ENC(SAMPLE_GROUP)
