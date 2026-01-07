@@ -7,7 +7,7 @@
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SampleGetRequestDto {
+public class SampleGetRequestDto implements CacheKeyProvider {
 
     /**
      * 샘플 식별 코드
@@ -25,6 +25,15 @@ public class SampleGetRequestDto {
         if (!typeList.contains(sampleType))
             throw new IllegalArgumentException("올바르지 않은 Type 요청입니다.");
         this.sampleType = sampleType;
+    }
+
+    // 캐싱 예제라 실무에서는 처리했습니다.
+    @Override
+    public String cacheKey() {
+        return String.join("|",
+                String.valueOf(sampleType),
+                String.valueOf(sampleInteger1)
+        );
     }
 
     public void setSampleKey(String sampleKey) {

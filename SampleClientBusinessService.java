@@ -1,5 +1,8 @@
 import dtos.SampleGetRequestSecondDto;
 
+import java.util.List;
+import java.util.Map;
+
 // 비즈니스 로직용
 @Service
 @Slf4j(topic = "ERROR_FILE_LOGGER")
@@ -18,9 +21,11 @@ public class SampleClientBusinessService {
 
     private final SampleClientModule module;
 
+    private final SampleCacheService sampleCacheService;
+
     private final Validator validator;
 
-    public SampleClientBusinessService(SampleClient client, @Qualifier("externalObjectMapper") ObjectMapper OT_OM, ObjectMapper IN_OM, SampleClientTransactionService transactionService, SampleClientProperties properties, SampleClientModule module, Validator validator) {
+    public SampleClientBusinessService(SampleClient client, @Qualifier("externalObjectMapper") ObjectMapper OT_OM, ObjectMapper IN_OM, SampleClientTransactionService transactionService, SampleClientProperties properties, SampleClientModule module, Validator validator, SampleCacheService sampleCacheService) {
         this.client = client;
         this.OT_OM = OT_OM;
         this.IN_OM = IN_OM;
@@ -28,6 +33,7 @@ public class SampleClientBusinessService {
         this.properties = properties;
         this.module = module;
         this.validator = validator;
+        this.sampleCacheService = sampleCacheService;
     }
 
 
@@ -45,6 +51,16 @@ public class SampleClientBusinessService {
     public List<Map<String, Object>> sampleSearch(SampleGetRequestDto dto, SampleApiEndpoint endpoint) {
         return callByResultToList(dto, endpoint);
     }
+
+    // 캐싱 예제
+
+    public List<Map<String, Object>> sampleCashingSearch(SampleGetRequestDto dto, SampleApiEndpoint endpoint, boolean forceApi) {
+        return sampleCacheService.getOrRefreshWithFallback(
+                dto, endpoint, forceApi,
+                () -> sampleSearch(dto, endpoint)
+        );
+    }
+
 
     /**
      * MES 정보 검색 
