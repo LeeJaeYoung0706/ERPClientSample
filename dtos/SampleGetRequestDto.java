@@ -30,6 +30,9 @@ public class SampleGetRequestDto implements CacheKeyProvider {
     // 캐싱 예제라 실무에서는 처리했습니다.
     @Override
     public String cacheKey() {
+        if (sampleType == null && sampleInteger1 == null) {
+            return "ALL"; // 전체조회 가능해서 추가
+        }
         return String.join("|",
                 String.valueOf(sampleType),
                 String.valueOf(sampleInteger1)
